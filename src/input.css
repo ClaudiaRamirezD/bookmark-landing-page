@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+
+@theme {
+    --font-sans: "Rubik", sans-serif;
+    --color-newblue-600: hsl(231, 69%, 60%);
+    --color-newred-400: hsl(0, 94%, 66%);
+    --color-newgrey-50: hsl(0, 0%, 97%);
+    --color-newblue-950: hsl(229, 31%, 21%);
+}
+
+
+.svg-backdrop, svg circle, svg path{
+    fill: var(--color-newgrey-50);
+}
+
+.svg-inside {
+    fill: var(--color-newblue-950);
+}
