@@ -1,22 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Rubik", sans-serif;
-  --color-newblue-600: hsl(231, 69%, 60%);
-  --color-newred-400: hsl(0, 94%, 66%);
-  --color-newgrey-50: hsl(0, 0%, 97%);
-  --color-newblue-950: hsl(229, 31%, 21%);
+    --font-sans: "Rubik", sans-serif;
+    --color-newblue-600: hsl(231, 69%, 60%);
+    --color-newred-400: hsl(0, 94%, 66%);
+    --color-newgrey-50: hsl(0, 0%, 97%);
+    --color-newblue-950: hsl(229, 31%, 21%);
 }
 
 .svg-backdrop,
 .svg-backdrop circle,
 .svg-backdrop path {
-  fill: var(--color-newgrey-50);
+    fill: var(--color-newgrey-50);
 }
 
 
 .svg-backdrop .svg-inside {
-  fill: var(--color-newblue-950);
+    fill: var(--color-newblue-950);
 }
 
 .svg-dots path {
@@ -25,51 +25,50 @@
 
 
 h2 {
-  @apply text-3xl font-medium text-center p-4;
+    @apply text-3xl font-medium text-center p-4;
 }
 
 p {
-  @apply font-normal text-gray-400 text-center;
+    @apply font-normal text-gray-400 text-center;
+}
+
+#error-msg{
+    @apply bg-newred-400 text-white text-xs italic rounded-b-md text-start px-4;
 }
 
 .question {
-  @apply flex items-center justify-between;
+    @apply flex items-center justify-between;
 }
 .question h3 {
-  @apply py-4 text-base;
+    @apply py-4 text-base;
 }
 
 .faq-divider {
-  @apply text-gray-400;
+    @apply text-gray-400;
 }
 
 .answer {
-  @apply text-start text-base pb-4;
+    @apply text-start text-base pb-4;
 }
 
-.active {
-  content: "";
-  display: block;
-  position: absolute;
-  bottom: 0; /* Line just above the bottom border */
-  left: 0;
-  width: 100%;
-  height: 3px; /* Line thickness */
-  background-color: #f44336;
-}
+
 
 .contact p{
     @apply text-white tracking-widest font-medium;
 }
 
 .faq-icon {
-  @apply transform transition-transform duration-300 ease-in-out cursor-pointer;
+    @apply transform transition-transform duration-300 ease-in-out cursor-pointer;
 }
 
 .faq-icon.icon-active {
-  @apply rotate-180;
+    @apply rotate-180;
 }
 
 .faq-icon.icon-active path {
-  stroke: var(--color-newred-400);
+    stroke: var(--color-newred-400);
 }
+
+
+
+

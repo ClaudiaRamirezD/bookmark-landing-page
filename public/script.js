@@ -3,7 +3,10 @@ const openButton = document.querySelector("#menu-open");
 const closeButton = document.querySelector("#menu-close");
 const backdrop = document.querySelector("#backdrop");
 const navmobile = document.querySelector(".header__nav-mobile");
-
+const form = document.querySelector("form");
+const emailInput = document.getElementById("email");
+const errorMsg = document.getElementById("error-msg-wrapper");
+const errorIcon = document.getElementById("error-icon");
 function toggleScrollLock(lock) {
     document.body.style.overflow = lock ? "hidden" : "";
 }
@@ -55,3 +58,64 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+// ========== FORM ==========
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = emailInput.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+        errorMsg.classList.remove("hidden");
+        errorIcon.classList.remove("hidden");
+
+    } else {
+        errorMsg.classList.add("hidden");
+        errorIcon.classList.add("hidden");
+        form.submit(); // Aquí podrías enviar o mostrar un success modal
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Add event listeners for each tab
+    const tabs = document.querySelectorAll('.tabs a');
+    
+    tabs.forEach((tab) => {
+        tab.addEventListener('click', function (e) {
+        e.preventDefault();  // Prevent the default anchor behavior
+        setActive(this);     // Trigger the setActive function when a tab is clicked
+        });
+    });
+});
+
+function setActive(link) {
+    console.log("setActive function triggered");
+    const sections = document.querySelectorAll(".tab-section");
+    const tabs = document.querySelectorAll(".tabs li");
+
+    // Hide all sections
+    sections.forEach((section) => section.classList.add("hidden"));
+
+    // Remove active styles from all tabs
+    tabs.forEach((tab) => {
+        const anchor = tab.querySelector("a");
+        const span = tab.querySelector("span");
+        anchor.classList.remove("active", "text-newred-400");
+        span.classList.remove("bg-newred-400");
+        span.classList.add("hidden"); // hide the line again
+    });
+
+    // Show the selected section
+    const targetId = link.getAttribute("href");
+    const targetSection = document.querySelector(targetId);
+    targetSection.classList.remove("hidden");
+    targetSection.classList.add("flex");
+
+    // Add active styles to the clicked tab
+    link.classList.add("active", "text-newred-400");
+    const activeSpan = link.parentElement.querySelector("span");
+    activeSpan.classList.remove("hidden");
+    activeSpan.classList.add("bg-newred-400");
+}
+
+
