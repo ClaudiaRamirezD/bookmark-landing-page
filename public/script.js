@@ -3,10 +3,11 @@ const openButton = document.querySelector("#menu-open");
 const closeButton = document.querySelector("#menu-close");
 const backdrop = document.querySelector("#backdrop");
 const navmobile = document.querySelector(".header__nav-mobile");
-const form = document.querySelector("form");
+const form = document.querySelector("#contact-form");
 const emailInput = document.getElementById("email");
 const errorMsg = document.getElementById("error-msg-wrapper");
 const errorIcon = document.getElementById("error-icon");
+
 function toggleScrollLock(lock) {
     document.body.style.overflow = lock ? "hidden" : "";
 }
@@ -35,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
         faq.addEventListener("click", () => {
         const isOpen = faq.getAttribute("aria-expanded") === "true";
 
-        // Cierra todos
         faqs.forEach((item) => {
             const answer = item.querySelector(".answer");
             const icon = item.querySelector(".faq-icon");
@@ -45,11 +45,9 @@ document.addEventListener("DOMContentLoaded", () => {
             icon.classList.remove("icon-active");
         });
 
-        // Si estaba cerrado, lo abre
         if (!isOpen) {
             const answer = faq.querySelector(".answer");
             const icon = faq.querySelector(".faq-icon");
-
             faq.setAttribute("aria-expanded", "true");
             answer.classList.remove("hidden");
             answer.setAttribute("aria-hidden", "false");
@@ -59,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// ========== FORM ==========
+// ========== FORM SUBMISSION ==========
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     const email = emailInput.value.trim();
@@ -68,22 +66,32 @@ form.addEventListener("submit", (e) => {
     if (!emailRegex.test(email)) {
         errorMsg.classList.remove("hidden");
         errorIcon.classList.remove("hidden");
-
     } else {
         errorMsg.classList.add("hidden");
         errorIcon.classList.add("hidden");
-        form.submit(); // Aquí podrías enviar o mostrar un success modal
+
+        Swal.fire({
+        title: "Success!",
+        text: "Thanks for contacting us. We’ll reach out soon 💌",
+        icon: "success",
+        confirmButtonColor: "#ef4444",
+        timer: 3000, // Show the success for 3 seconds
+        timerProgressBar: true,
+        showConfirmButton: false
+        });
+
+        emailInput.value = "";
     }
 });
 
+// ========== TABS ==========
 document.addEventListener("DOMContentLoaded", function () {
-    // Add event listeners for each tab
-    const tabs = document.querySelectorAll('.tabs a');
-    
+    const tabs = document.querySelectorAll(".tabs a");
+
     tabs.forEach((tab) => {
-        tab.addEventListener('click', function (e) {
-        e.preventDefault();  // Prevent the default anchor behavior
-        setActive(this);     // Trigger the setActive function when a tab is clicked
+        tab.addEventListener("click", function (e) {
+        e.preventDefault();
+        setActive(this);
         });
     });
 });
@@ -102,7 +110,7 @@ function setActive(link) {
         const span = tab.querySelector("span");
         anchor.classList.remove("active", "text-newred-400");
         span.classList.remove("bg-newred-400");
-        span.classList.add("hidden"); // hide the line again
+        span.classList.add("hidden");
     });
 
     // Show the selected section
@@ -117,5 +125,3 @@ function setActive(link) {
     activeSpan.classList.remove("hidden");
     activeSpan.classList.add("bg-newred-400");
 }
-
-

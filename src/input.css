@@ -72,3 +72,14 @@ p {
 
 
 
+.faq {
+    @apply cursor-pointer hover:text-newred-400;
+}
+
+#success-message{
+    @apply text-green-600;
+}
+
+#footer-ul li a {
+    @apply hover:text-newred-400; 
+}
