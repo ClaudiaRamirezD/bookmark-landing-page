@@ -98,30 +98,60 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function setActive(link) {
     console.log("setActive function triggered");
+
     const sections = document.querySelectorAll(".tab-section");
     const tabs = document.querySelectorAll(".tabs li");
 
-    // Hide all sections
+    // Ocultar todas las secciones
     sections.forEach((section) => section.classList.add("hidden"));
 
-    // Remove active styles from all tabs
+    // Quitar clases activas de todos los tabs
     tabs.forEach((tab) => {
         const anchor = tab.querySelector("a");
-        const span = tab.querySelector("span");
+        const spans = tab.querySelectorAll("span");
         anchor.classList.remove("active", "text-newred-400");
+        spans.forEach((span) => {
         span.classList.remove("bg-newred-400");
         span.classList.add("hidden");
+        });
     });
 
-    // Show the selected section
+    // Mostrar la sección correspondiente
     const targetId = link.getAttribute("href");
     const targetSection = document.querySelector(targetId);
     targetSection.classList.remove("hidden");
     targetSection.classList.add("flex");
 
-    // Add active styles to the clicked tab
+    // Activar tab actual
     link.classList.add("active", "text-newred-400");
-    const activeSpan = link.parentElement.querySelector("span");
-    activeSpan.classList.remove("hidden");
-    activeSpan.classList.add("bg-newred-400");
+
+    const parent = link.parentElement;
+    const mobileSpan = parent.querySelector("span.lg\\:hidden"); // Selecciona solo el span para mobile
+    const desktopSpan = parent.querySelector("span.lg\\:block"); // Selecciona solo el span para desktop
+
+    // Mostrar el span adecuado según tamaño de pantalla
+    if (window.innerWidth < 1024) {
+        if (mobileSpan) {
+        mobileSpan.classList.remove("hidden");
+        mobileSpan.classList.add("bg-newred-400");
+        }
+    } else {
+        if (desktopSpan) {
+        desktopSpan.classList.remove("hidden");
+        desktopSpan.classList.add("bg-newred-400");
+        }
+    }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const firstTab = document.querySelector(".tabs li a");
+    setActive(firstTab);
+});
+
+
+window.addEventListener("resize", () => {
+    const activeLink = document.querySelector(".features-a.active");
+    if (activeLink) {
+        setActive(activeLink);
+    }
+});

@@ -25,11 +25,15 @@
 
 
 h2 {
-    @apply text-3xl font-medium text-center p-4;
+    @apply text-3xl font-medium;
 }
 
 p {
-    @apply font-normal text-gray-400 text-center;
+    @apply font-normal text-gray-400;
+}
+
+.desktop-nav-container ul li, .desktop-nav-container a {
+    @apply hover:text-newred-400;
 }
 
 #error-msg{
