@@ -21,15 +21,15 @@ function processFile(filePath) {
 
 // Function to process all HTML files in a folder
 function processFolder(folderPath) {
-  fs.readdirSync(folderPath).forEach((file) => {
-    const filePath = path.join(folderPath, file);
+    fs.readdirSync(folderPath).forEach((file) => {
+        const filePath = path.join(folderPath, file);
 
-    if (fs.statSync(filePath).isDirectory()) {
-      processFolder(filePath); // Recursively process directories
-    } else if (filePath.endsWith(".html")) {
-      processFile(filePath); // Process HTML files
-    }
-  });
+        if (fs.statSync(filePath).isDirectory()) {
+        processFolder(filePath); // Recursively process directories
+        } else if (filePath.endsWith(".html")) {
+        processFile(filePath); // Process HTML files
+        }
+    });
 }
 
 // Run the function on your folder
