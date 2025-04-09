@@ -73,9 +73,6 @@ p {
     stroke: var(--color-newred-400);
 }
 
-
-
-
 .faq {
     @apply cursor-pointer hover:text-newred-400;
 }
@@ -87,3 +84,4 @@ p {
 #footer-ul li a {
     @apply hover:text-newred-400; 
 }
+
